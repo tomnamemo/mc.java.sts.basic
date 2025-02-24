@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<div >
+    <ol type="i" th:object="${response}">
+        <li th:text="*{id}"></li>
+        <li th:text="*{email}"></li>
+        <li th:text="*{name}"></li>
+        <li th:text="*{lastAccess}"></li>
+    </ol>
+</div>
+</body>
+</html>
