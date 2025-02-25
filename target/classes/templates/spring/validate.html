@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+    <div>
+        <ol th:object="${formRequest}">
+            <li th:if="${#fields.hasErrors('id')}">
+                <p th:text="*{id}"></p>
+                <p th:errors="*{id}"></p>
+            </li>
+            <li th:if="${#fields.hasErrors('email')}">
+                <p th:text="*{email}"></p>
+                <p th:errors="*{email}"></p>
+            </li>
+            <li th:if="${#fields.hasErrors('name')}">
+                <p th:text="*{name}"></p>
+                <p th:errors="*{name}"></p>
+            </li>
+            <li th:if="${#fields.hasErrors('createdAt')}">
+                <p th:text="*{createdAt}"></p>
+                <p th:errors="*{createdAt}"></p>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

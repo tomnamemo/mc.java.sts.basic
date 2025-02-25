@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
 </head>
 <body>
-$END$
+<div layout:fragment="section" th:object="${session}">
+    <ul>
+        <li th:text="*{account.id()}"></li>
+        <li th:text="*{account.name()}"></li>
+        <li th:text="*{account.email()}"></li>
+        <li th:text="*{account.createdAt()}"></li>
+    </ul>
+</div>
 </body>
 </html>
