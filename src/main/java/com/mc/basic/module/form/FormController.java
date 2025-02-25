@@ -20,9 +20,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("form")
+@SuppressWarnings("Duplicates")
 public class FormController {
     
     // request content-type : application/x-www-form-url-encoded 일때 컨트롤러
+    // method return type : String, mav, void
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
