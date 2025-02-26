@@ -1,1 +1,1 @@
-# mc.java.sts.basic
+# mc.springboot.basic
