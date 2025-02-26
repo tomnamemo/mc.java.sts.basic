@@ -21,4 +21,8 @@ public record ApiResponse<T>(
         return new ApiResponse<>(code.code(), code.message(),null);
     }
 
+    public static <T> ApiResponse<T> error(ResponseCode code, T data){
+        return new ApiResponse<>(code.code(), code.message(),data);
+    }
+
 }

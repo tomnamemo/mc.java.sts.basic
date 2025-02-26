@@ -3,11 +3,14 @@ package com.mc.basic.module.rest;
 import com.mc.basic.infra.response.ApiResponse;
 import com.mc.basic.module.rest.request.RestRequest;
 import com.mc.basic.module.rest.response.RestResponse;
+import com.mc.basic.module.rest.validator.RestValidator;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -18,6 +21,12 @@ import java.util.Map;
 public class RestApiController {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @InitBinder("restRequest")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(new RestValidator());
+    }
+
     /***
      * content-type : application/json 넘어왔을 떄 controller
      */
@@ -26,10 +35,11 @@ public class RestApiController {
     @GetMapping("test")
    // @ResponseBody //응답값을 json으로 변환해서 받아 줌
     public Map<String,String> getTest(
+            @Valid
             RestRequest request
     ){
-     log.info("req: {}",request);
-     return  Map.of(request.email(), request.name());
+         log.info("req: {}",request);
+         return  Map.of(request.email(), request.name());
     }
 
 
@@ -40,6 +50,7 @@ public class RestApiController {
    // @ResponseBody //응답값을 json으로 변환해서 받아 줌
     public Map<String,String> postTest(
             @RequestBody
+            @Valid
             RestRequest request 
     ){
         log.info("req: {}",request);
@@ -50,6 +61,7 @@ public class RestApiController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<Void>>get(
+            @Valid
             RestRequest request
     ){
 
@@ -59,6 +71,7 @@ public class RestApiController {
     @PostMapping
     public ResponseEntity<ApiResponse <RestResponse>> post(
             @RequestBody
+            @Valid
             RestRequest request
     ){
         RestResponse response = generateRestResponse(request);
